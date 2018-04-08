@@ -28,26 +28,53 @@ public class Menu
 		
 		//for start button
 		start=new JButton("START");
-		//start.setBackground(Color.BLACK);
 		start.setSize(300,125);
-		start.setLocation(menu.getWidth()/2,menu.getHeight()-230);
+		start.setLocation((menu.getWidth()/2)-330,menu.getHeight()-230);
+		start.setBackground(Color.GRAY);
+		start.addActionListener( new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
+				menu.remove(start);
+				menu.remove(picture);
+				menu.remove(load);
+				//menu.setVisible(false);
+				menu.revalidate();
+				menu.repaint();
+				running = false;
+			}
+		});
 		start.setVisible(true);
 		
 		//for load button
+		load=new JButton("LOAD");
+		load.setSize(300,125);
+		load.setLocation((menu.getWidth()/2)+30,menu.getHeight()-230);
+		load.setBackground(Color.GRAY);
+		/*load.addActionListener( new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
+
+			}
+		});*/
+		load.setVisible(true);
 		
-		//at the end, add everything to frame and set visible
-		menu.getContentPane().add(picture);
-		menu.getContentPane().add(start);
+		//at the end, add everything to frame and set visible	
+		menu.add(picture);
+		menu.add(start);
+		menu.add(load);
 		
 		running=true;
 		menu.setVisible(true);
 		
-		menu.getContentPane().revalidate();
-		menu.getContentPane().repaint();
+		menu.revalidate();
+		menu.repaint();
 	}
 	
 	public boolean running()
 	{
 		return running;
 	}
+	
 }	

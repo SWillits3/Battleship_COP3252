@@ -27,6 +27,13 @@ public class Battleship
 		menu.run();
 		while(menu.running())	//be on menu until user presses play
 		{}
+		
+		JPanel blk = new JPanel();
+		blk.setSize(100,100);
+		blk.setLocation(10,10);
+		blk.setBackground(Color.BLACK);
+		frame.add(blk);
+		frame.setVisible(true);
 
 	}
 }
