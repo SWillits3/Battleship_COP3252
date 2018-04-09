@@ -15,6 +15,7 @@ public class Menu
 	
 	public Menu (JFrame frame)
 	{	
+		running=true;
 		menu = frame;
 		picture= new JLabel(new ImageIcon("Title.png"));
 	}
@@ -51,7 +52,7 @@ public class Menu
 		load.setSize(300,125);
 		load.setLocation((menu.getWidth()/2)+30,menu.getHeight()-230);
 		load.setBackground(Color.GRAY);
-		/*load.addActionListener( new ActionListener()
+		/*load.addActionListener( new ActionListener() //button doesn't go away if this function is added when pressing start
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
@@ -65,7 +66,6 @@ public class Menu
 		menu.add(start);
 		menu.add(load);
 		
-		running=true;
 		menu.setVisible(true);
 		
 		menu.revalidate();

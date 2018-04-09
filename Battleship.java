@@ -4,6 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+
 
 public class Battleship
 {
@@ -25,15 +27,18 @@ public class Battleship
 		
 		Menu menu = new Menu(frame); 
 		menu.run();
-		while(menu.running())	//be on menu until user presses play
-		{}
-		
-		JPanel blk = new JPanel();
-		blk.setSize(100,100);
-		blk.setLocation(10,10);
-		blk.setBackground(Color.BLACK);
-		frame.add(blk);
-		frame.setVisible(true);
-
+		while(menu.running()==true)	//be on menu until user presses play
+		{
+			System.out.println(" ");
+		}
+		//System.out.println("End test");
+		//			System.out.println("TEST");
+		SetUp grid = new SetUp (frame);
+					System.out.println("TEST");
+		grid.run();
+		while(grid.ran()==true)	//doesnt run unless you put in a println in there
+		{
+			System.out.println("");
+		}
 	}
 }
