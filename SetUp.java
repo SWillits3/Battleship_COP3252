@@ -1,3 +1,4 @@
+//Scott Wilits Carlito Que
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,7 +9,7 @@ import javax.swing.*;
 
 public class SetUp extends JPanel 
 {
-	private JFrame window;
+	private JFrame window; 
 	private boolean running;
 	
 	public SetUp (JFrame frame)
@@ -19,7 +20,7 @@ public class SetUp extends JPanel
 	
 	public void run()
 	{
-		JLabel picture= new JLabel(new ImageIcon("Title.png"));
+		JLabel picture= new JLabel(new ImageIcon("Grid.png"));
 		picture.setSize(window.getWidth(),window.getHeight());
 		picture.setLocation(0,0);
 		picture.setVisible(true);
