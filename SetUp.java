@@ -37,12 +37,19 @@ public class SetUp extends JPanel
 	
 	public void run()
 	{
+		Transition p1 = new Transition (1);
+		window.add(p1);
+		window.revalidate();
+		window.repaint();
+		while(p1.isThere()==true)	//doesnt run unless you put in a println in there
+			System.out.println("");
+		window.remove(p1);	
+			
 		picture= new JLabel(new ImageIcon(pic));
 		picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		picture.setLocation(0,0);
 		picture.setVisible(true);
 		window.add(picture);
-		System.out.printf("%d\n",window.getWidth());
 
 		window.revalidate();
 		window.repaint();

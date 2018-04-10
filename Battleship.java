@@ -35,7 +35,7 @@ public class Battleship
 		//System.out.println("End test");
 		//			System.out.println("TEST");
 		SetUp grid = new SetUp (frame);
-					System.out.println("TEST");
+		System.out.println("TEST");
 		grid.run();
 		while(grid.ran()==true)	//doesnt run unless you put in a println in there
 		{
