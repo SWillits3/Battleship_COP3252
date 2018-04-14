@@ -36,10 +36,63 @@ public class Battleship
 		//			System.out.println("TEST");
 		SetUp grid = new SetUp (frame);
 		System.out.println("TEST");
-		grid.run();
+		
+		Player player1 = new Player();
+		Player player2 = new Player();
+		int whowon;
+		
+		grid.run(player1, player2);
 		while(grid.ran()==true)	//doesnt run unless you put in a println in there
 		{
 			System.out.println("");
 		}
+		
+		boolean firstplay=true;
+		while(true)		//after setup and we will play the game now
+		{
+			Transition p1 = new Transition (3);
+			frame.add(p1);
+			frame.revalidate();
+			frame.repaint();
+			while(p1.isThere()==true)	//doesnt run unless you put in a println in there
+				System.out.println("");
+			frame.remove(p1);
+			if (firstplay==true)
+				firstplay=false;
+			else	//show the player's board and what happened in the previous turn
+			{
+				
+			}
+			
+			if(player2.isDead())
+			{
+				whowon=1;
+				break;
+			}
+			
+			//player 2's turn now
+			Transition p2 = new Transition (4);
+			frame.add(p2);
+			frame.revalidate();
+			frame.repaint();
+			while(p2.isThere()==true)	
+				System.out.println("");
+			frame.remove(p2);	//end transition, now show what happened on previous turn
+			
+			if (player1.isDead())
+			{
+				whowon=2;
+				break;
+			}
+		}
+		
+		//print end screen
+		End gameover = new End (whowon);
+		frame.add(gameover);
+		frame.revalidate();
+		frame.repaint();
+		while(gameover.isThere()==true)	
+			System.out.println("");
+		System.exit(0);
 	}
 }

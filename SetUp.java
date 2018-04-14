@@ -35,8 +35,9 @@ public class SetUp extends JPanel
 	   pic = pic.getScaledInstance(size,size,Image.SCALE_DEFAULT);
 	}
 	
-	public void run()
+	public void run(Player player1, Player player2)
 	{
+		//for player 1 setup
 		Transition p1 = new Transition (1);
 		window.add(p1);
 		window.revalidate();
@@ -44,15 +45,28 @@ public class SetUp extends JPanel
 		while(p1.isThere()==true)	//doesnt run unless you put in a println in there
 			System.out.println("");
 		window.remove(p1);	
-			
+		
+		//end transition slide and player 1 creates his board
+		//call a player class function
 		picture= new JLabel(new ImageIcon(pic));
-		picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
+		/*picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		picture.setLocation(0,0);
 		picture.setVisible(true);
-		window.add(picture);
+		window.add(picture);  comment this in if gridpanels dont work*/
 
 		window.revalidate();
 		window.repaint();
+		
+		/*for player 2 setup
+		Transition p2 = new Transition (2);
+		window.add(p2);
+		window.revalidate();
+		window.repaint();
+		while(p2.isThere()==true)	//doesnt run unless you put in a println in there
+			System.out.println("");
+		window.remove(p2);	
+		
+		running=false;*/
 	}
 	
 	public boolean ran()

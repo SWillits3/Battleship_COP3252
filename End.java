@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class Transition extends JPanel implements ActionListener
+public class End extends JPanel implements ActionListener
 {
 	private JLabel picture;
 	private boolean running;
@@ -10,16 +10,12 @@ public class Transition extends JPanel implements ActionListener
 	private int delay = 3000;
 	protected Timer timer;
 
-	public Transition(int whichwindow)
+	public End(int who)
 	{
-			if (whichwindow==1)
-				picture= new JLabel(new ImageIcon("P1choose.png"));
-			else if (whichwindow==2)
-				picture= new JLabel(new ImageIcon("P2choose.png"));
-			else if (whichwindow==3)
-				picture= new JLabel(new ImageIcon("P1turn.png"));
-			else if (whichwindow==4)
-				picture= new JLabel(new ImageIcon("P2turn.png"));
+			if (who==1)
+				picture= new JLabel(new ImageIcon("P1Win.png"));
+			else if (who==2)
+				picture= new JLabel(new ImageIcon("P2Win.png"));;
 			
 			picture.setSize(900,615);
 			this.add(picture);
