@@ -20,33 +20,37 @@ public class Battleship
 
 		//code this in if setSize() doesn't work
 		//frame.setPreferredSize(new Dimension(900, 615));
-		//frame.setMinimumSize(new Dimension(900, 615));		
+		//frame.setMinimumSize(new Dimension(900, 615));
 		//frame.pack();
 		//frame.setVisible( true ); // display frame
 
 
-		
-		Menu menu = new Menu(frame); 
+
+		Menu menu = new Menu(frame);
 		menu.run();
 		while(menu.running()==true)	//be on menu until user presses play
 		{
-			System.out.println(" ");
+			System.out.println("menu");
 		}
 		//System.out.println("End test");
 		//			System.out.println("TEST");
 		SetUp grid = new SetUp (frame);
-		System.out.println("TEST");
-		
+
+			//while(grid.ran())
+				//System.out.println("setup");
+
+		System.out.println("done setupdone setupdone setupdone setupdone setupdone setupdone setupdone setupdone setupdone setup");
+
 		Player player1 = new Player();
 		Player player2 = new Player();
 		int whowon;
-		
+
 		grid.run(player1, player2);
-		while(grid.ran()==true)	//doesnt run unless you put in a println in there
-		{
-			System.out.println("");
-		}
-		
+		//while(grid.ran()==true)	//doesnt run unless you put in a println in there
+		//{
+			//System.out.println("grid.ran=true");
+		//}
+
 		boolean firstplay=true;
 		while(true)		//after setup and we will play the game now
 		{
@@ -55,43 +59,52 @@ public class Battleship
 			frame.revalidate();
 			frame.repaint();
 			while(p1.isThere()==true)	//doesnt run unless you put in a println in there
-				System.out.println("");
+			{
+					System.out.println("p1.isthere");
+			}
 			frame.remove(p1);
+			/*
+				player1.print_board(frame);
+				//player selects a Button
+				//repaint after button is selected.
+				//dont think we need firstplay
+
+			*/
 			if (firstplay==true)
 				firstplay=false;
 			else	//show the player's board and what happened in the previous turn
 			{
-				
+
 			}
-			
+
 			if(player2.isDead())
 			{
 				whowon=1;
 				break;
 			}
-			
+
 			//player 2's turn now
 			Transition p2 = new Transition (4);
 			frame.add(p2);
 			frame.revalidate();
 			frame.repaint();
-			while(p2.isThere()==true)	
-				System.out.println("");
+			while(p2.isThere()==true)
+				System.out.println("p2.isthere");
 			frame.remove(p2);	//end transition, now show what happened on previous turn
-			
+
 			if (player1.isDead())
 			{
 				whowon=2;
 				break;
 			}
 		}
-		
+
 		//print end screen
 		End gameover = new End (whowon);
 		frame.add(gameover);
 		frame.revalidate();
 		frame.repaint();
-		while(gameover.isThere()==true)	
+		while(gameover.isThere()==true)
 			System.out.println("");
 		System.exit(0);
 	}
