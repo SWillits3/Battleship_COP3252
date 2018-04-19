@@ -86,21 +86,8 @@ public class Player
 			return false;
 	}
 
-
-	public int get_value(int row, int col)
-	{
-		return array[row][col];	
-	}
-
-	public void print_board(JFrame frame)
-	{
-		System.out.println("printing board");
-	}
-
 	public boolean isRunning()
 	{
 		return running;
 	}
-
 }
-

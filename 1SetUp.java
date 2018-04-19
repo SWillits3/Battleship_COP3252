@@ -21,6 +21,7 @@ public class SetUp extends JPanel
 	public SetUp (JFrame frame)
 	{
 		window = frame;
+		running =true;
 		Image temppic;
 		/*try
 		{
@@ -72,10 +73,8 @@ public class SetUp extends JPanel
 		while(player2.isRunning()==true)
 			System.out.println("");
 
+		running=false;
 	}
-
-	public void printGrid()
-	{}
 	
 	public boolean ran()
 	{
