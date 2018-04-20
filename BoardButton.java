@@ -20,7 +20,7 @@ public class BoardButton extends JButton implements ActionListener{
 	}
 
 //Create a function that gets the 2darray
- public int[][] get_array_value(int[][] arr,int row, int col)
+ public int get_array_value(int[][] arr,int row, int col)
  {
 	 return arr[row][col];	//may not need this
  }

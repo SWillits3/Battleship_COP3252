@@ -11,13 +11,13 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class SetUp extends JPanel 
+public class SetUp extends JPanel
 {
-	private JFrame window; 
+	private JFrame window;
 	private boolean running;
 	private Image pic;
 	private JLabel picture;
-	
+
 	public SetUp (JFrame frame)
 	{
 		window = frame;
@@ -28,12 +28,12 @@ public class SetUp extends JPanel
 		}
 	  	catch (IOException e)
 	  	{
-			   
+
 	 	}
 	 	int size=window.getContentPane().getHeight();
 		pic = pic.getScaledInstance(size,size,Image.SCALE_DEFAULT);*/
 	}
-	
+
 	public void run(Player player1, Player player2)
 	{
 		//for player 1 setup
@@ -43,13 +43,31 @@ public class SetUp extends JPanel
 		window.repaint();
 		while(p1.isThere()==true)	//doesnt run unless you put in a println in there
 			System.out.println("");
-		window.remove(p1);	
-		
+		window.remove(p1);
+
 		//end transition slide and player 1 creates his board
 		//call a player class function
 		player1.choosePosition(window);
 		while(player1.isRunning()==true)
-			System.out.println("");
+			System.out.println("player1 choosing position");
+
+
+			//going to have to move continue, auto randomgenerator button
+		BoardButton buttons[][] = new BoardButton[10][10];
+		window.setLayout(new GridLayout(10,10));
+		for(int i =0; i<10; ++i)
+		{
+			for(int j = 0; j<10; ++j)
+			{
+				buttons[i][j] = new BoardButton();
+				window.add(buttons[i][j]);
+				window.revalidate();
+				window.repaint();
+			}
+		}
+
+
+
 		/*picture= new JLabel(new ImageIcon(pic));
 		picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		picture.setLocation(0,0);
@@ -58,7 +76,7 @@ public class SetUp extends JPanel
 
 		window.revalidate();
 		window.repaint();
-		
+
 		//for player 2 setup
 		Transition p2 = new Transition (2);
 		window.add(p2);
@@ -66,8 +84,8 @@ public class SetUp extends JPanel
 		window.repaint();
 		while(p2.isThere()==true)	//doesnt run unless you put in a println in there
 			System.out.println("");
-		window.remove(p2);	
-		
+		window.remove(p2);
+
 		player2.choosePosition(window);
 		while(player2.isRunning()==true)
 			System.out.println("");
@@ -76,7 +94,7 @@ public class SetUp extends JPanel
 
 	public void printGrid()
 	{}
-	
+
 	public boolean ran()
 	{
 		return running;

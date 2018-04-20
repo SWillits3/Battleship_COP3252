@@ -5,13 +5,13 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
-/*	
+/*
 		player array rules
 		1 - completely empty spot
 		2 - taken by player
 		3 - hit player spot
 		4 - missed player spot
-		
+
 		Player has the following ships:
 		Carrier - 5 spaces
 		Battleship - 4 spaces
@@ -36,17 +36,17 @@ public class Player
 				array[i][j]=1;
 		}
 
-		continu = new JButton("CONTINUE");
+		continu = new JButton("Manual");
 		continu.setSize(300,125);
 		continu.setLocation(615,615-270);
 
 
-		save = new JButton("SAVE");
+		save = new JButton("Auto Random Generator");
 		save.setSize(285,125);
 		save.setLocation(615,615-125);
-		
+
 	}
-	
+
 	public void hit()
 	{
 		lifes--;
@@ -55,7 +55,7 @@ public class Player
 	public void choosePosition(JFrame window)
 	{
 		running = true;
-		
+
 		continu.setVisible(true);
 		continu.addActionListener( new ActionListener()
 		{
@@ -70,14 +70,14 @@ public class Player
 			}
 		});
 		save.setVisible(true);
-		
+
 		window.add(continu);
 		window.add(save);
 		window.revalidate();
 		window.repaint();
-		
+
 	}
-	
+
 	public boolean isDead()
 	{
 		if (lifes==0)
@@ -89,7 +89,7 @@ public class Player
 
 	public int get_value(int row, int col)
 	{
-		return array[row][col];	
+		return array[row][col];
 	}
 
 	public void print_board(JFrame frame)
@@ -103,4 +103,3 @@ public class Player
 	}
 
 }
-
