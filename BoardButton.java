@@ -15,12 +15,37 @@ public class BoardButton extends JButton implements ActionListener{
 	public BoardButton(){
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
-		Miss = new ImageIcon(this.getClass().getResource("Dead.png"))
+		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
 		this.addActionListener(this);
 	}
 
+//Create a function that gets the 2darray
+ public int[][] get_array_value(int[][] arr,int row, int col)
+ {
+	 return arr[row][col];	//may not need this
+ }
+
 	public void actionPerformed(ActionEvent e){
-		if(value!=2)
+		//somehow get value = array[row][col]
+		//will use this after confirmation of bottom button layout
+	/*	switch(value)
+		{
+			case 1:
+				setIcon(null);	//empty spot
+				break;
+			case 2:
+				setIcon(Hidden);
+				break;
+			case 3:
+				setIcon(Hit);
+				break;
+			case 4:
+				setIcon(Miss);
+				break;
+		}*/
+
+
+		if(value!=2)//not the actual funcionality. Just use this to test for now
 		{
 			value++;
 			value%=3;
