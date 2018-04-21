@@ -52,21 +52,6 @@ public class SetUp extends JPanel
 			System.out.println("player1 choosing position");
 
 
-			//going to have to move continue, auto randomgenerator button
-		BoardButton buttons[][] = new BoardButton[10][10];
-		window.setLayout(new GridLayout(10,10));
-		for(int i =0; i<10; ++i)
-		{
-			for(int j = 0; j<10; ++j)
-			{
-				buttons[i][j] = new BoardButton();
-				window.add(buttons[i][j]);
-				window.revalidate();
-				window.repaint();
-			}
-		}
-
-
 
 		/*picture= new JLabel(new ImageIcon(pic));
 		picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());

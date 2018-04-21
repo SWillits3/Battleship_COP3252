@@ -3,7 +3,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class BoardButton extends JButton implements ActionListener{
+public class BoardButton extends JButton implements ActionListener
+{
 	ImageIcon Hidden,Hit,Miss;
 	int value=0;
 	/*
@@ -12,7 +13,8 @@ public class BoardButton extends JButton implements ActionListener{
 	2:O
 	*/
 
-	public BoardButton(){
+	public BoardButton()
+	{
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
 		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
@@ -25,7 +27,8 @@ public class BoardButton extends JButton implements ActionListener{
 	 return arr[row][col];	//may not need this
  }
 
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		//somehow get value = array[row][col]
 		//will use this after confirmation of bottom button layout
 	/*	switch(value)

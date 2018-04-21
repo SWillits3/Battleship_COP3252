@@ -24,7 +24,7 @@ public class Player
 	public int array [][];
 	private int lifes;
 	private boolean running;
-	public JButton continu,save;
+	public JButton continu,save,random;
 
 	public Player()
 	{
@@ -35,16 +35,21 @@ public class Player
 			for (int j=0;j<10;j++)
 				array[i][j]=1;
 		}
+		
+		
 
-		continu = new JButton("Manual");
-		continu.setSize(300,125);
+		continu = new JButton("Continue");
+		continu.setSize(300,100);
 		continu.setLocation(615,615-270);
 
 
-		save = new JButton("Auto Random Generator");
-		save.setSize(285,125);
-		save.setLocation(615,615-125);
-
+		save = new JButton("Save");
+		save.setSize(285,100);
+		save.setLocation(615,615-150);
+		
+		random=new JButton("Random");
+		random.setSize(285,100);
+		random.setLocation(615,615-150);
 	}
 
 	public void hit()
@@ -54,6 +59,8 @@ public class Player
 
 	public void choosePosition(JFrame window)
 	{
+		JPanel temp = new JPanel(); //may remove
+		
 		running = true;
 
 		continu.setVisible(true);
@@ -63,6 +70,7 @@ public class Player
 			{
 				window.remove(continu);
 				window.remove(save);
+				window.remove(temp);
 				//menu.setVisible(false);
 				window.revalidate();
 				window.repaint();
@@ -70,7 +78,26 @@ public class Player
 			}
 		});
 		save.setVisible(true);
+		
+		//going to have to move continue, auto randomgenerator button
+		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
+		GridBagConstraints gbc = new GridBagConstraints();
+		BoardButton buttons[][] = new BoardButton[10][10];
+		temp.setLayout(new GridLayout(10,10));
+		for(int i =0; i<10; ++i)
+		{
+			for(int j = 0; j<10; ++j)
+			{
+				buttons[i][j] = new BoardButton();
+				gbc.gridx=i;
+				gbc.gridy=j;
+				temp.add(buttons[i][j],gbc);
 
+			}
+		}
+		temp.setVisible(true);
+		window.add(temp);
+		
 		window.add(continu);
 		window.add(save);
 		window.revalidate();
