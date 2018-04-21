@@ -6,26 +6,27 @@ import java.awt.event.ActionEvent;
 public class BoardButton extends JButton implements ActionListener
 {
 	ImageIcon Hidden,Hit,Miss;
-	int value=0;
+	private int value=0;
+	private int row;
+	private int col;
+	public Boolean inSetup;
 	/*
 	0:nothing
 	1:X
 	2:O
 	*/
 
-	public BoardButton()
+	public BoardButton(int ro, int column)
 	{
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
 		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
 		this.addActionListener(this);
+		
+		row=ro;
+		col=column;
+		inSetup=true;
 	}
-
-//Create a function that gets the 2darray
- public int get_array_value(int[][] arr,int row, int col)
- {
-	 return arr[row][col];	//may not need this
- }
 
 	public void actionPerformed(ActionEvent e)
 	{
@@ -48,22 +49,36 @@ public class BoardButton extends JButton implements ActionListener
 		}*/
 
 
-		if(value!=2)//not the actual funcionality. Just use this to test for now
+		if(inSetup==true)//not the actual functionality. Just use this to test for now
 		{
-			value++;
-			value%=3;
-			switch(value){
+			if (value==0)
+				value++;
+			else
+				value--;
+			switch(value)
+			{
 				case 0:
 					setIcon(null);
 					break;
 				case 1:
-					setIcon(Hit);
-					break;
-				case 2:
-					setIcon(Miss);
+					setIcon(Hidden);
 					break;
 			}
 		}
-		//else do nothing
+	}
+	
+	public int returnRow()
+	{
+		return row;
+	}
+	
+	public int returnCol()
+	{
+		return col;
+	}
+	
+	public int returnVal()
+	{
+		return value;
 	}
 }

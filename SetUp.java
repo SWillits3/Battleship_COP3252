@@ -68,7 +68,7 @@ public class SetUp extends JPanel
 		window.revalidate();
 		window.repaint();
 		while(p2.isThere()==true)	//doesnt run unless you put in a println in there
-			System.out.println("");
+			System.out.println("player2 choosing position");
 		window.remove(p2);
 
 		player2.choosePosition(window);

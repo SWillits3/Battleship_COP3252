@@ -8,7 +8,7 @@ import java.awt.*;
 /*
 		player array rules
 		1 - completely empty spot
-		2 - taken by player
+		2 - taken by enemy player
 		3 - hit player spot
 		4 - missed player spot
 
@@ -21,10 +21,12 @@ import java.awt.*;
 
 public class Player
 {
-	public int array [][];
+	public int array [][];		//might delete this
+	public BoardButton buttons[][];
 	private int lifes;
 	private boolean running;
 	public JButton continu,save,random;
+	JPanel temp;
 
 	public Player()
 	{
@@ -59,7 +61,7 @@ public class Player
 
 	public void choosePosition(JFrame window)
 	{
-		JPanel temp = new JPanel(); //may remove
+		temp = new JPanel();
 		
 		running = true;
 
@@ -69,11 +71,18 @@ public class Player
 			public void actionPerformed(ActionEvent evt)
 			{
 				window.remove(continu);
-				window.remove(save);
+				window.remove(random);
 				window.remove(temp);
 				//menu.setVisible(false);
 				window.revalidate();
 				window.repaint();
+				for(int i =0; i<10; ++i)
+				{
+					for(int j = 0; j<10; ++j)
+					{
+						buttons[i][j].inSetup=false;
+					}
+				}
 				running = false;
 			}
 		});
@@ -81,27 +90,31 @@ public class Player
 		
 		//going to have to move continue, auto randomgenerator button
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
-		GridBagConstraints gbc = new GridBagConstraints();
-		BoardButton buttons[][] = new BoardButton[10][10];
+		buttons = new BoardButton[10][10];
 		temp.setLayout(new GridLayout(10,10));
+		//GridBagConstraints gbc=new GridBagConstraints();
 		for(int i =0; i<10; ++i)
 		{
 			for(int j = 0; j<10; ++j)
 			{
-				buttons[i][j] = new BoardButton();
-				gbc.gridx=i;
-				gbc.gridy=j;
-				temp.add(buttons[i][j],gbc);
-
+				buttons[i][j] = new BoardButton(i,j);
+				//gbc.gridx=i;
+				//gbc.gridy=j;
+				temp.add(buttons[i][j]);
 			}
 		}
 		temp.setVisible(true);
 		window.add(temp);
 		
-		window.add(continu);
-		window.add(save);
+		window.add(random);
 		window.revalidate();
 		window.repaint();
+		
+
+		window.add(continu);
+		window.revalidate();
+		window.repaint();
+			
 
 	}
 
@@ -111,6 +124,51 @@ public class Player
 			return true;
 		else
 			return false;
+	}
+	
+	public void pickFire(JFrame window, Player enemy)
+	{
+		running = true;
+		temp = new JPanel();
+		JButton fire = new JButton("FIRE");
+		fire.addActionListener( new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
+				window.remove(save);
+				window.remove(fire);
+				window.remove(temp);
+				//menu.setVisible(false);
+				window.revalidate();
+				window.repaint();
+				running = false;
+			}
+		});
+		fire.setSize(300,100);
+		fire.setLocation(615,615-270);
+		fire.setVisible(true);
+		
+		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
+		buttons = new BoardButton[10][10];
+		temp.setLayout(new GridLayout(10,10));
+		//GridBagConstraints gbc=new GridBagConstraints();
+		for(int i =0; i<10; ++i)
+		{
+			for(int j = 0; j<10; ++j)
+			{
+				buttons[i][j] = new BoardButton(i,j);
+				//gbc.gridx=i;
+				//gbc.gridy=j;
+				temp.add(buttons[i][j]);
+			}
+		}
+		temp.setVisible(true);
+		window.add(temp);
+		
+		window.add(fire);
+		window.add(save);
+		window.revalidate();
+		window.repaint();
 	}
 
 

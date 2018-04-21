@@ -61,7 +61,7 @@ public class Battleship
 			frame.repaint();
 			while(p1.isThere()==true)	//doesnt run unless you put in a println in there
 			{
-					System.out.println("p1.isthere");
+					System.out.println("p1 transition isthere");
 			}
 			frame.remove(p1);
 			/*
@@ -77,7 +77,10 @@ public class Battleship
 			{
 
 			}
-
+			player1.pickFire(frame, player2);
+			while(player1.isRunning()==true)
+				System.out.println("player1 picking play");
+			
 			if(player2.isDead())
 			{
 				whowon=1;
@@ -90,8 +93,12 @@ public class Battleship
 			frame.revalidate();
 			frame.repaint();
 			while(p2.isThere()==true)
-				System.out.println("p2.isthere");
+				System.out.println("p2 transition isthere");
 			frame.remove(p2);	//end transition, now show what happened on previous turn
+			
+			player2.pickFire(frame,player2);
+			while(player2.isRunning()==true)
+				System.out.println("player2 picking play");
 
 			if (player1.isDead())
 			{
