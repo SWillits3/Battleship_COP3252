@@ -83,12 +83,19 @@ public class Player
 						buttons[i][j].inSetup=false;
 					}
 				}
+				for(int i =0; i<10; ++i)
+				{
+					for(int j = 0; j<10; ++j)
+					{
+						if (buttons[i][j].returnVal()==2)
+							array[i][j]=2;
+					}
+				}
 				running = false;
 			}
 		});
 		save.setVisible(true);
 		
-		//going to have to move continue, auto randomgenerator button
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		buttons = new BoardButton[10][10];
 		temp.setLayout(new GridLayout(10,10));
@@ -97,7 +104,7 @@ public class Player
 		{
 			for(int j = 0; j<10; ++j)
 			{
-				buttons[i][j] = new BoardButton(i,j);
+				buttons[i][j] = new BoardButton(i,j,true,1,false);
 				//gbc.gridx=i;
 				//gbc.gridy=j;
 				temp.add(buttons[i][j]);
@@ -129,7 +136,25 @@ public class Player
 	public void pickFire(JFrame window, Player enemy)
 	{
 		running = true;
+		
+		BoardButton play[][];
+		play = new BoardButton[10][10];
+		
 		temp = new JPanel();
+		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
+		temp.setLayout(new GridLayout(10,10));
+		//GridBagConstraints gbc=new GridBagConstraints();
+		for(int i =0; i<10; ++i)		
+		{
+			for(int j = 0; j<10; ++j)
+			{
+				play[i][j] = new BoardButton(i,j,false,enemy.array[i][j],true);
+				//gbc.gridx=i;
+				//gbc.gridy=j;
+				temp.add(play[i][j]);
+			}
+		}
+		
 		JButton fire = new JButton("FIRE");
 		fire.addActionListener( new ActionListener()
 		{
@@ -139,6 +164,13 @@ public class Player
 				window.remove(fire);
 				window.remove(temp);
 				//menu.setVisible(false);
+				for(int i =0; i<10; ++i)		
+				{
+					for(int j = 0; j<10; ++j)
+					{
+						enemy.array[i][j]=play[i][j].returnVal();
+					}
+				}
 				window.revalidate();
 				window.repaint();
 				running = false;
@@ -148,25 +180,65 @@ public class Player
 		fire.setLocation(615,615-270);
 		fire.setVisible(true);
 		
+		temp.setVisible(true);
+		window.add(temp);
+		window.add(fire);
+		window.add(save);
+		window.revalidate();
+		window.repaint();
+	}
+	
+	public void showBoard(JFrame window)
+	{
+		running=true;
+		JButton panels[][]=new JButton[10][10];
+		
+		temp = new JPanel();
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
-		buttons = new BoardButton[10][10];
 		temp.setLayout(new GridLayout(10,10));
 		//GridBagConstraints gbc=new GridBagConstraints();
-		for(int i =0; i<10; ++i)
+		for(int i =0; i<10; ++i)		
 		{
 			for(int j = 0; j<10; ++j)
 			{
-				buttons[i][j] = new BoardButton(i,j);
+				panels[i][j] = new JButton();
 				//gbc.gridx=i;
 				//gbc.gridy=j;
-				temp.add(buttons[i][j]);
+				ImageIcon picture=new ImageIcon();
+				
+				if (array[i][j]==2)
+					picture=new ImageIcon(this.getClass().getResource("O.png"));
+				else if (array[i][j]==3)
+					picture=new ImageIcon(this.getClass().getResource("Hit.png"));
+				else if (array[i][j]==4)
+					picture=new ImageIcon(this.getClass().getResource("Dead.png"));
+				
+				panels[i][j].setIcon(picture);
+				
+				temp.add(panels[i][j]);
 			}
 		}
+		
+		JButton cont = new JButton("Continue");
+		cont.setSize(300,100);
+		cont.setLocation(615,615-270);
+		cont.addActionListener( new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
+				window.remove(temp);
+				window.remove(cont);
+				window.revalidate();
+				window.repaint();
+				running = false;
+			}
+		});
+		cont.setVisible(true);
+		window.add(cont);
+		
 		temp.setVisible(true);
 		window.add(temp);
 		
-		window.add(fire);
-		window.add(save);
 		window.revalidate();
 		window.repaint();
 	}

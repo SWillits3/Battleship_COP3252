@@ -6,26 +6,46 @@ import java.awt.event.ActionEvent;
 public class BoardButton extends JButton implements ActionListener
 {
 	ImageIcon Hidden,Hit,Miss;
-	private int value=0;
+	private int value;
 	private int row;
 	private int col;
 	public Boolean inSetup;
 	/*
-	0:nothing
-	1:X
-	2:O
+	1:empty
+	2:X (taken, could be hidden to player)
+	3:O (hit)
+	4:missed
 	*/
 
-	public BoardButton(int ro, int column)
+	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy)
 	{
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
 		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
 		this.addActionListener(this);
 		
+		value=val;
 		row=ro;
 		col=column;
-		inSetup=true;
+		inSetup=isSetup;
+		switch(value)
+			{
+				case 1:
+					setIcon(null);	//empty spot
+					break;
+				case 2:
+					if (isEnemy==true)
+						setIcon(null);
+					else
+						setIcon(Hidden);
+					break;
+				case 3:
+					setIcon(Hit);
+					break;
+				case 4:
+					setIcon(Miss);
+					break;
+			}
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -49,19 +69,42 @@ public class BoardButton extends JButton implements ActionListener
 		}*/
 
 
-		if(inSetup==true)//not the actual functionality. Just use this to test for now
+		if(inSetup==true)
 		{
-			if (value==0)
+			if (value==1)
 				value++;
 			else
 				value--;
 			switch(value)
 			{
-				case 0:
+				case 1:
 					setIcon(null);
 					break;
-				case 1:
+				case 2:
 					setIcon(Hidden);
+					break;
+			}
+		}
+		else
+		{
+			if (value==1)
+				value=4;
+			else if (value==2)
+				value=3;
+				
+			switch(value)
+			{
+				case 1:
+					setIcon(null);	//empty spot
+					break;
+				case 2:
+					setIcon(Hidden);
+					break;
+				case 3:
+					setIcon(Hit);
+					break;
+				case 4:
+					setIcon(Miss);
 					break;
 			}
 		}

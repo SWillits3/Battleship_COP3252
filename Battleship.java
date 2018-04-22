@@ -73,10 +73,13 @@ public class Battleship
 			*/
 			if (firstplay==true)
 				firstplay=false;
-			else	//show the player's board and what happened in the previous turn
+			else		//show the player's board and what happened in the previous turn
 			{
-
+				player1.showBoard(frame);
+				while(player1.isRunning()==true)
+					System.out.println("Showing player1 board");
 			}
+			
 			player1.pickFire(frame, player2);
 			while(player1.isRunning()==true)
 				System.out.println("player1 picking play");
@@ -96,7 +99,14 @@ public class Battleship
 				System.out.println("p2 transition isthere");
 			frame.remove(p2);	//end transition, now show what happened on previous turn
 			
-			player2.pickFire(frame,player2);
+			
+			player2.showBoard(frame);
+			while(player2.isRunning()==true)
+				System.out.println("Showing player2 board");
+			
+			
+			
+			player2.pickFire(frame,player1);
 			while(player2.isRunning()==true)
 				System.out.println("player2 picking play");
 
