@@ -107,6 +107,13 @@ public class Player
 				buttons[i][j] = new BoardButton(i,j,true,1,false);
 				//gbc.gridx=i;
 				//gbc.gridy=j;
+				buttons[i][j].addActionListener( new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
+				
+					}
+				});
 				temp.add(buttons[i][j]);
 			}
 		}
@@ -219,7 +226,7 @@ public class Player
 			}
 		}
 
-		JButton cont = new JButton("Continue");
+		JButton cont = new JButton("Proceed to Fire");
 		cont.setSize(300,100);
 		cont.setLocation(615,615-270);
 		cont.addActionListener( new ActionListener()

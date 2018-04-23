@@ -52,13 +52,6 @@ public class SetUp extends JPanel
 			System.out.println("player1 choosing position");
 
 
-
-		/*picture= new JLabel(new ImageIcon(pic));
-		picture.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
-		picture.setLocation(0,0);
-		picture.setVisible(true);
-		window.add(picture);  comment this in if gridpanels dont work*/
-
 		window.revalidate();
 		window.repaint();
 

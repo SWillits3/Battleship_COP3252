@@ -17,7 +17,7 @@ public class End extends JPanel implements ActionListener
 			else if (who==2)
 				picture= new JLabel(new ImageIcon("P2Win.png"));;
 			
-			//picture.setSize(900,615);
+			picture.setSize(900,615);
 			this.add(picture);
 			this.setSize(900,615);
 			this.setLocation(0,0);
