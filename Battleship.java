@@ -79,11 +79,11 @@ public class Battleship
 				while(player1.isRunning()==true)
 					System.out.println("Showing player1 board");
 			}
-			
+
 			player1.pickFire(frame, player2);
 			while(player1.isRunning()==true)
-				System.out.println("player1 picking play");
-			
+				System.out.printf("player1 picking play %s\n", player2.get_life());
+
 			if(player2.isDead())
 			{
 				whowon=1;
@@ -98,17 +98,17 @@ public class Battleship
 			while(p2.isThere()==true)
 				System.out.println("p2 transition isthere");
 			frame.remove(p2);	//end transition, now show what happened on previous turn
-			
-			
+
+
 			player2.showBoard(frame);
 			while(player2.isRunning()==true)
 				System.out.println("Showing player2 board");
-			
-			
-			
+
+
+
 			player2.pickFire(frame,player1);
 			while(player2.isRunning()==true)
-				System.out.println("player2 picking play");
+				System.out.printf("player2 picking play %s\n", player1.get_life());
 
 			if (player1.isDead())
 			{

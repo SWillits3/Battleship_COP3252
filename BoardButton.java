@@ -10,6 +10,7 @@ public class BoardButton extends JButton implements ActionListener
 	private int row;
 	private int col;
 	public Boolean inSetup;
+	public Player enemy;
 	/*
 	1:empty
 	2:X (taken, could be hidden to player)
@@ -23,7 +24,7 @@ public class BoardButton extends JButton implements ActionListener
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
 		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
 		this.addActionListener(this);
-		
+
 		value=val;
 		row=ro;
 		col=column;
@@ -47,6 +48,39 @@ public class BoardButton extends JButton implements ActionListener
 					break;
 			}
 	}
+
+	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy, Player p)
+	{
+		enemy = p;
+		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
+		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
+		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
+		this.addActionListener(this);
+
+		value=val;
+		row=ro;
+		col=column;
+		inSetup=isSetup;
+		switch(value)
+			{
+				case 1:
+					setIcon(null);	//empty spot
+					break;
+				case 2:
+					if (isEnemy==true)
+						setIcon(null);
+					else
+						setIcon(Hidden);
+					break;
+				case 3:
+					setIcon(Hit);
+					break;
+				case 4:
+					setIcon(Miss);
+					break;
+			}
+	}
+
 
 	public void actionPerformed(ActionEvent e)
 	{
@@ -88,10 +122,18 @@ public class BoardButton extends JButton implements ActionListener
 		else
 		{
 			if (value==1)
-				value=4;
+				{
+					value=4;
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				}
+
 			else if (value==2)
-				value=3;
-				
+				{
+					value=3;
+					enemy.hit();
+					System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				}
+
 			switch(value)
 			{
 				case 1:
@@ -109,17 +151,17 @@ public class BoardButton extends JButton implements ActionListener
 			}
 		}
 	}
-	
+
 	public int returnRow()
 	{
 		return row;
 	}
-	
+
 	public int returnCol()
 	{
 		return col;
 	}
-	
+
 	public int returnVal()
 	{
 		return value;
