@@ -24,6 +24,7 @@ public class Player
 	public int array [][];		//might delete this
 	public BoardButton buttons[][];
 	private int lifes;
+	public int initializer;
 	private boolean running;
 	public JButton continu,save,random;
 	JPanel temp;
@@ -31,6 +32,7 @@ public class Player
 	public Player()
 	{
 		lifes=17;
+		initializer = 0;
 		array=new int [10][10];
 		for(int i=0;i<10;i++)
 		{
@@ -59,7 +61,7 @@ public class Player
 		lifes--;
 	}
 
-	public void choosePosition(JFrame window)
+	public void choosePosition(JFrame window, Player own)
 	{
 		temp = new JPanel();
 
@@ -104,16 +106,9 @@ public class Player
 		{
 			for(int j = 0; j<10; ++j)
 			{
-				buttons[i][j] = new BoardButton(i,j,true,1,false);
+				buttons[i][j] = new BoardButton(i,j,true,1,false,own);
 				//gbc.gridx=i;
 				//gbc.gridy=j;
-				buttons[i][j].addActionListener( new ActionListener()		//working on this
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-						
-					}
-				});
 				temp.add(buttons[i][j]);
 			}
 		}
@@ -123,12 +118,13 @@ public class Player
 		window.add(random);
 		window.revalidate();
 		window.repaint();
-
-
-		window.add(continu);
-		window.revalidate();
-		window.repaint();
-
+//CHECK THIS PART
+		if(initializer == 17)
+		{
+			window.add(continu);
+			window.revalidate();
+			window.repaint();
+		}
 
 	}
 
@@ -226,7 +222,7 @@ public class Player
 			}
 		}
 
-		JButton cont = new JButton("Proceed to Fire");
+		JButton cont = new JButton("Continue");
 		cont.setSize(300,100);
 		cont.setLocation(615,615-270);
 		cont.addActionListener( new ActionListener()
@@ -267,6 +263,14 @@ public class Player
 	public boolean isRunning()
 	{
 		return running;
+	}
+
+	public void add_initializer(boolean add)
+	{
+		if(add)
+			initializer++;
+		else
+			initializer--;
 	}
 
 }

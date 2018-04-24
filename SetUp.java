@@ -47,9 +47,9 @@ public class SetUp extends JPanel
 
 		//end transition slide and player 1 creates his board
 		//call a player class function
-		player1.choosePosition(window);
+		player1.choosePosition(window,player1);
 		while(player1.isRunning()==true)
-			System.out.println("player1 choosing position");
+			System.out.printf("player1 choosing position %s\n" , player1.initializer);
 
 
 		window.revalidate();
@@ -64,7 +64,7 @@ public class SetUp extends JPanel
 			System.out.println("player2 choosing position");
 		window.remove(p2);
 
-		player2.choosePosition(window);
+		player2.choosePosition(window,player2);
 		while(player2.isRunning()==true)
 			System.out.println("");
 

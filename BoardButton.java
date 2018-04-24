@@ -11,13 +11,14 @@ public class BoardButton extends JButton implements ActionListener
 	private int col;
 	public Boolean inSetup;
 	public Player enemy;
+	public int counter;
 	/*
 	1:empty
 	2:X (taken, could be hidden to player)
 	3:O (hit)
 	4:missed
 	*/
-
+//for show
 	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy)
 	{
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
@@ -48,7 +49,7 @@ public class BoardButton extends JButton implements ActionListener
 					break;
 			}
 	}
-
+//for action fire
 	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy, Player p)
 	{
 		enemy = p;
@@ -81,7 +82,6 @@ public class BoardButton extends JButton implements ActionListener
 			}
 	}
 
-
 	public void actionPerformed(ActionEvent e)
 	{
 		//somehow get value = array[row][col]
@@ -106,9 +106,15 @@ public class BoardButton extends JButton implements ActionListener
 		if(inSetup==true)
 		{
 			if (value==1)
+			{
 				value++;
+				enemy.add_initializer(true);//not actually enemy
+			}
 			else
+			{
 				value--;
+				enemy.add_initializer(false);	//not actually enemy, just own player
+			}
 			switch(value)
 			{
 				case 1:
