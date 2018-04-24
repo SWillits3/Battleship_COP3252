@@ -118,15 +118,19 @@ public class Player
 		window.add(random);
 		window.revalidate();
 		window.repaint();
-//CHECK THIS PART
-		if(initializer == 17)
+		while(initializer!=17)
 		{
+			System.out.printf("initializer = %s\n",initializer);
+				if(initializer == 17)
+					break;
+		}
+
 			window.add(continu);
 			window.revalidate();
 			window.repaint();
 		}
 
-	}
+
 
 	public boolean isDead()
 	{

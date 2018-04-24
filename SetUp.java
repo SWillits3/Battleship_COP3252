@@ -49,7 +49,7 @@ public class SetUp extends JPanel
 		//call a player class function
 		player1.choosePosition(window,player1);
 		while(player1.isRunning()==true)
-			System.out.printf("player1 choosing position %s\n" , player1.initializer);
+			System.out.printf("player1 choosing position\n");
 
 
 		window.revalidate();
