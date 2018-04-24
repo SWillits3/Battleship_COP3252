@@ -84,36 +84,28 @@ public class BoardButton extends JButton implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		//somehow get value = array[row][col]
-		//will use this after confirmation of bottom button layout
-	/*	switch(value)
-		{
-			case 1:
-				setIcon(null);	//empty spot
-				break;
-			case 2:
-				setIcon(Hidden);
-				break;
-			case 3:
-				setIcon(Hit);
-				break;
-			case 4:
-				setIcon(Miss);
-				break;
-		}*/
-
-
 		if(inSetup==true)
 		{
-			if (value==1)
+			if(enemy.initializer<17)
+			{
+				if (value==1)
 			{
 				value++;
-				enemy.add_initializer(true);//not actually enemy
+				enemy.add_initializer(true);//not actually enemy, own board
+			}
+				else
+				{
+					value--;
+					enemy.add_initializer(false);	//not actually enemy, just own player
+				}
 			}
 			else
 			{
-				value--;
-				enemy.add_initializer(false);	//not actually enemy, just own player
+				if(value!=1)
+				{
+					value--;
+					enemy.add_initializer(false);
+				}
 			}
 			switch(value)
 			{
