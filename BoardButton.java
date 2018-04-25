@@ -120,7 +120,7 @@ public class BoardButton extends JButton implements ActionListener
 		}
 		else	//if we are in play mode
 		{
-			if(!enemy.get_miss()&&!enemy.get_hit())	//if miss = false, then changes can be made
+			if(!enemy.get_miss())	//if miss = false, then changes can be made
 			{
 				if (value==1)
 					{

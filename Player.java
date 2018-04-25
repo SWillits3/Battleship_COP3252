@@ -195,13 +195,13 @@ public class Player
 	public void pickFire(JFrame window, Player enemy)
 	{
 		running = true;
-		
+
 		enemy.miss_init();
 		enemy.hit_init();
-		
+
 		JLabel hit=new JLabel(new ImageIcon("ResultHit.png"));
 		JLabel nothit=new JLabel(new ImageIcon("ResultMiss.png"));;
-		
+
 		BoardButton play[][];
 		play = new BoardButton[10][10];
 
@@ -225,7 +225,7 @@ public class Player
 				window.remove(save);
 				window.remove(fire);
 				window.remove(temp);
-				
+
 				window.remove(hit);
 				window.remove(nothit);
 				//menu.setVisible(false);
@@ -253,28 +253,33 @@ public class Player
 		while(true)	//add if life ==0 to end the game as well.
 		{
 			System.out.printf("Enemy Life points: %s\n", enemy.get_life());
-			if(enemy.get_miss()||enemy.get_hit())	//break and make all buttons unclickable
+			if(enemy.get_miss()||enemy.get_life()==0)	//break and make all buttons unclickable
 				break;
+			if(enemy.get_hit())
+			{
+				hit.setSize(300,300);
+				hit.setLocation(615,0);
+				window.add(hit);
+				window.revalidate();
+				window.repaint();
+			}
 		}
-		
-		if(enemy.get_hit())
-		{
-			hit.setSize(300,300);
-			hit.setLocation(615,0);
-			window.add(hit);
-		}
-		else
+
+		window.remove(hit);
+		if(enemy.get_life()!=0)
 		{
 			nothit.setSize(300,300);
 			nothit.setLocation(610,0);
 			window.add(nothit);
+			window.revalidate();
+			window.repaint();
 		}
 
 		window.add(fire);
 		window.add(save);
 		window.revalidate();
 		window.repaint();
-		
+
 		//enemy.miss_init();
 		//enemy.hit_init();
 
@@ -357,14 +362,14 @@ public class Player
 			initializer++;
 		else
 			initializer--;
-	}	
-	
+	}
+
 	public void hit()
 	{
 		lifes--;
 		hit=true;
 	}
-	
+
 	public void hit_init()
 	{
 		hit = false;
