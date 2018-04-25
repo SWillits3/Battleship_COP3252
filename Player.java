@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /*
 		player array rules
@@ -102,6 +103,7 @@ public class Player
 				running = false;
 			}
 		});
+
 		save.setVisible(true);
 
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
@@ -115,6 +117,31 @@ public class Player
 				temp.add(buttons[i][j]);
 			}
 		}
+
+		random.addActionListener( new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
+				Random random_number=new Random();
+				int x;//=random_number.nextInt(11);
+				int y;
+				while(initializer<17)
+				{
+					x = random_number.nextInt(10);
+					y = random_number.nextInt(10);
+					if(buttons[x][y].returnVal()!=2)
+					{//if not hidden, then set the value to 2 and increment
+						initializer++;
+						buttons[x][y].set_hidden();
+						//temp.remove(buttons[x][y]);
+						//buttons[x][y] = new BoardButton(x,y,true,2,false,own);
+					}
+
+				}
+
+				window.remove(random);
+			}
+		});
 		temp.setVisible(true);
 		window.add(temp);
 		window.add(spots);
@@ -219,7 +246,7 @@ public class Player
 
 		while(!missed)	//add if life ==0 to end the game as well.
 		{
-			System.out.printf("Enemy Life points: %s\n" enemy.get_life());
+			System.out.printf("Enemy Life points: %s\n", enemy.get_life());
 			if(enemy.get_miss())	//break and make all buttons unclickable
 				break;
 		}

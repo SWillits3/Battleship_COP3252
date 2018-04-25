@@ -168,4 +168,10 @@ public class BoardButton extends JButton implements ActionListener
 	{
 		return value;
 	}
+
+	public void set_hidden()	//for random button
+	{
+		value = 2;
+		setIcon(Hidden);
+	}
 }
