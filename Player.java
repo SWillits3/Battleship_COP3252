@@ -28,12 +28,13 @@ public class Player
 	public int initializer;
 	private boolean running;
 	public JButton continu,save,random,spots;
-	private boolean missed;
+	private boolean missed,hit;
 	JPanel temp;
 
 	public Player()
 	{
 		missed = false;
+		hit=true;
 		lifes=17;
 		initializer = 0;
 		array=new int [10][10];
@@ -63,10 +64,6 @@ public class Player
 		spots.setLocation(615,100);
 	}
 
-	public void hit()
-	{
-		lifes--;
-	}
 
 	public void choosePosition(JFrame window, Player own)
 	{
@@ -198,7 +195,13 @@ public class Player
 	public void pickFire(JFrame window, Player enemy)
 	{
 		running = true;
+		
 		enemy.miss_init();
+		enemy.hit_init();
+		
+		JLabel hit=new JLabel(new ImageIcon("ResultHit.png"));
+		JLabel nothit=new JLabel(new ImageIcon("ResultMiss.png"));;
+		
 		BoardButton play[][];
 		play = new BoardButton[10][10];
 
@@ -222,6 +225,9 @@ public class Player
 				window.remove(save);
 				window.remove(fire);
 				window.remove(temp);
+				
+				window.remove(hit);
+				window.remove(nothit);
 				//menu.setVisible(false);
 				for(int i =0; i<10; ++i)
 				{
@@ -244,19 +250,33 @@ public class Player
 		window.revalidate();
 		window.repaint();
 
-		while(!missed)	//add if life ==0 to end the game as well.
+		while(true)	//add if life ==0 to end the game as well.
 		{
 			System.out.printf("Enemy Life points: %s\n", enemy.get_life());
-			if(enemy.get_miss())	//break and make all buttons unclickable
+			if(enemy.get_miss()||enemy.get_hit())	//break and make all buttons unclickable
 				break;
+		}
+		
+		if(enemy.get_hit())
+		{
+			hit.setSize(300,300);
+			hit.setLocation(615,0);
+			window.add(hit);
+		}
+		else
+		{
+			nothit.setSize(300,300);
+			nothit.setLocation(610,0);
+			window.add(nothit);
 		}
 
 		window.add(fire);
 		window.add(save);
 		window.revalidate();
 		window.repaint();
-		enemy.miss_init();
-
+		
+		//enemy.miss_init();
+		//enemy.hit_init();
 
 	}
 
@@ -268,14 +288,11 @@ public class Player
 		temp = new JPanel();
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		temp.setLayout(new GridLayout(10,10));
-		//GridBagConstraints gbc=new GridBagConstraints();
 		for(int i =0; i<10; ++i)
 		{
 			for(int j = 0; j<10; ++j)
 			{
 				panels[i][j] = new JButton();
-				//gbc.gridx=i;
-				//gbc.gridy=j;
 				ImageIcon picture=new ImageIcon();
 
 				if (array[i][j]==2)
@@ -340,6 +357,22 @@ public class Player
 			initializer++;
 		else
 			initializer--;
+	}	
+	
+	public void hit()
+	{
+		lifes--;
+		hit=true;
+	}
+	
+	public void hit_init()
+	{
+		hit = false;
+	}
+
+	public boolean get_hit()
+	{
+		return hit;
 	}
 
 	public void missed()

@@ -1,6 +1,6 @@
 //Scott Wilits Carlito Que
 //testing github
-import sun.audio.*;
+//import sun.audio.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -18,6 +18,7 @@ public class Battleship
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		frame.setSize( 900, 615 ); // set frame size
+		frame.getContentPane().setBackground( Color.black );
 		frame.setResizable(false);
 
 		//code this in if setSize() doesn't work
