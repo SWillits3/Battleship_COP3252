@@ -54,7 +54,6 @@ public class SetUp extends JPanel
 
 		window.revalidate();
 		window.repaint();
-
 		//for player 2 setup
 		Transition p2 = new Transition (2);
 		window.add(p2);

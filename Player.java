@@ -26,7 +26,7 @@ public class Player
 	private int lifes;
 	public int initializer;
 	private boolean running;
-	public JButton continu,save,random;
+	public JButton continu,save,random,spots;
 	JPanel temp;
 
 	public Player()
@@ -54,6 +54,10 @@ public class Player
 		random=new JButton("Random");
 		random.setSize(285,100);
 		random.setLocation(615,615-150);
+		
+		spots=new JButton();
+		spots.setSize(300,100);
+		spots.setLocation(615,100);
 	}
 
 	public void hit()
@@ -66,7 +70,6 @@ public class Player
 		temp = new JPanel();
 
 		running = true;
-
 		continu.setVisible(true);
 		continu.addActionListener( new ActionListener()
 		{
@@ -75,6 +78,7 @@ public class Player
 				window.remove(continu);
 				window.remove(random);
 				window.remove(temp);
+				window.remove(spots);
 				//menu.setVisible(false);
 				window.revalidate();
 				window.repaint();
@@ -101,34 +105,56 @@ public class Player
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		buttons = new BoardButton[10][10];
 		temp.setLayout(new GridLayout(10,10));
-		//GridBagConstraints gbc=new GridBagConstraints();
 		for(int i =0; i<10; ++i)
 		{
 			for(int j = 0; j<10; ++j)
 			{
 				buttons[i][j] = new BoardButton(i,j,true,1,false,own);
-				//gbc.gridx=i;
-				//gbc.gridy=j;
 				temp.add(buttons[i][j]);
 			}
 		}
 		temp.setVisible(true);
 		window.add(temp);
-
+		window.add(spots);
 		window.add(random);
 		window.revalidate();
 		window.repaint();
-		while(initializer!=17)
-		{
-			System.out.printf("initializer = %s\n",initializer);
-				if(initializer == 17)
-					break;
-		}
+		
+		
 
-			window.add(continu);
+		boolean conthere=false;
+		while (true)
+		{
+			if (running==false)
+				break;
+			String temporary=new String ((lifes-initializer)+" spots remaining");
+			System.out.printf("%s\n",temporary);
+			//window.remove(spots);
+			spots.setText((lifes-initializer)+" spots remaining");
 			window.revalidate();
 			window.repaint();
+			if (initializer==17)
+			{
+				if (conthere!=true)
+				{
+					conthere=true;
+					window.add(continu);
+					window.revalidate();
+					window.repaint();
+				}
+			}
+			else 
+			{
+				if (conthere==true)
+				{
+					window.remove(continu);
+					window.revalidate();
+					window.repaint();
+					conthere=false;
+				}
+			}
 		}
+	}
 
 
 
@@ -150,19 +176,16 @@ public class Player
 		temp = new JPanel();
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		temp.setLayout(new GridLayout(10,10));
-		//GridBagConstraints gbc=new GridBagConstraints();
 		for(int i =0; i<10; ++i)
 		{
 			for(int j = 0; j<10; ++j)
 			{
 				play[i][j] = new BoardButton(i,j,false,enemy.array[i][j],true,enemy);
-				//gbc.gridx=i;
-				//gbc.gridy=j;
 				temp.add(play[i][j]);
 			}
 		}
 
-		JButton fire = new JButton("FIRE");	//not sure if this button is necessary
+		JButton fire = new JButton("Continue");	//not sure if this button is necessary
 		fire.addActionListener( new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -226,7 +249,7 @@ public class Player
 			}
 		}
 
-		JButton cont = new JButton("Continue");
+		JButton cont = new JButton("Play");
 		cont.setSize(300,100);
 		cont.setLocation(615,615-270);
 		cont.addActionListener( new ActionListener()

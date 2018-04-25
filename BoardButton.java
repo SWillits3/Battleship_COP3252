@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 
 public class BoardButton extends JButton implements ActionListener
 {
-	ImageIcon Hidden,Hit,Miss;
+	ImageIcon Hidden,Hit,Miss, Mark;
 	private int value;
 	private int row;
 	private int col;
@@ -18,7 +18,7 @@ public class BoardButton extends JButton implements ActionListener
 	3:O (hit)
 	4:missed
 	*/
-//for show
+	//for show
 	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy)
 	{
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
@@ -49,13 +49,14 @@ public class BoardButton extends JButton implements ActionListener
 					break;
 			}
 	}
-//for action fire
+	//for action fire
 	public BoardButton(int ro, int column,boolean isSetup, int val,boolean isEnemy, Player p)
 	{
 		enemy = p;
 		Hit=new ImageIcon(this.getClass().getResource("Hit.png"));
 		Hidden=new ImageIcon(this.getClass().getResource("O.png"));	//probably wont need
 		Miss = new ImageIcon(this.getClass().getResource("Dead.png"));
+		Mark = new ImageIcon(this.getClass().getResource("Mark.png"));
 		this.addActionListener(this);
 
 		value=val;
@@ -117,7 +118,7 @@ public class BoardButton extends JButton implements ActionListener
 					break;
 			}
 		}
-		else
+		else	//if we are in play mode
 		{
 			if (value==1)
 				{
