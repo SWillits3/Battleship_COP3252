@@ -219,7 +219,7 @@ public class Player
 
 		while(!missed)	//add if life ==0 to end the game as well.
 		{
-			System.out.printf("missed = %s\n", missed);
+			System.out.printf("Enemy Life points: %s\n" enemy.get_life());
 			if(enemy.get_miss())	//break and make all buttons unclickable
 				break;
 		}
