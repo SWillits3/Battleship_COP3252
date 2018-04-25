@@ -228,7 +228,7 @@ public class Player
 		window.add(save);
 		window.revalidate();
 		window.repaint();
-		missed = false;
+		enemy.miss_init();
 
 
 	}
