@@ -120,27 +120,30 @@ public class BoardButton extends JButton implements ActionListener
 		}
 		else	//if we are in play mode
 		{
-			if (value==1)
-				{
-					value=4;
+			if(!enemy.get_miss())	//if miss = false, then changes can be made
+			{
+				if (value==1)
+					{
+						value=4;
 						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-				}
+						enemy.missed();
+					}
 
-			else if (value==2)
-				{
-					value=3;
-					enemy.hit();
-					System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-				}
-
+				else if (value==2)
+					{
+						value=3;
+						enemy.hit();
+						System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					}
+			}
 			switch(value)
 			{
 				case 1:
 					setIcon(null);	//empty spot
 					break;
-				case 2:
-					setIcon(Hidden);
-					break;
+				//case 2:	//shouldnt show hidden anyway
+				//	setIcon(Hidden);
+				//	break;
 				case 3:
 					setIcon(Hit);
 					break;

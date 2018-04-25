@@ -27,10 +27,12 @@ public class Player
 	public int initializer;
 	private boolean running;
 	public JButton continu,save,random,spots;
+	private boolean missed;
 	JPanel temp;
 
 	public Player()
 	{
+		missed = false;
 		lifes=17;
 		initializer = 0;
 		array=new int [10][10];
@@ -54,7 +56,7 @@ public class Player
 		random=new JButton("Random");
 		random.setSize(285,100);
 		random.setLocation(615,615-150);
-		
+
 		spots=new JButton();
 		spots.setSize(300,100);
 		spots.setLocation(615,100);
@@ -119,8 +121,8 @@ public class Player
 		window.add(random);
 		window.revalidate();
 		window.repaint();
-		
-		
+
+
 
 		boolean conthere=false;
 		while (true)
@@ -143,7 +145,7 @@ public class Player
 					window.repaint();
 				}
 			}
-			else 
+			else
 			{
 				if (conthere==true)
 				{
@@ -169,7 +171,7 @@ public class Player
 	public void pickFire(JFrame window, Player enemy)
 	{
 		running = true;
-
+		enemy.miss_init();
 		BoardButton play[][];
 		play = new BoardButton[10][10];
 
@@ -212,10 +214,23 @@ public class Player
 
 		temp.setVisible(true);
 		window.add(temp);
+		window.revalidate();
+		window.repaint();
+
+		while(!missed)	//add if life ==0 to end the game as well.
+		{
+			System.out.printf("missed = %s\n", missed);
+			if(enemy.get_miss())	//break and make all buttons unclickable
+				break;
+		}
+
 		window.add(fire);
 		window.add(save);
 		window.revalidate();
 		window.repaint();
+		missed = false;
+
+
 	}
 
 	public void showBoard(JFrame window)
@@ -298,6 +313,21 @@ public class Player
 			initializer++;
 		else
 			initializer--;
+	}
+
+	public void missed()
+	{
+		missed = true;
+	}
+
+	public void miss_init()
+	{
+		missed = false;
+	}
+
+	public boolean get_miss()
+	{
+		return missed;
 	}
 
 }
