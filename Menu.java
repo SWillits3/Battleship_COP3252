@@ -9,7 +9,7 @@ import java.awt.*;
 public class Menu
 {
 	public JFrame menu;
-	public JButton start,load;
+	public JButton start;
 	public JLabel picture;
 
 	public boolean running;
@@ -39,7 +39,6 @@ public class Menu
 			{
 				menu.remove(start);
 				menu.remove(picture);
-				menu.remove(load);
 				//menu.setVisible(false);
 				menu.revalidate();
 				menu.repaint();
@@ -48,25 +47,12 @@ public class Menu
 		});
 		start.setVisible(true);
 		
-		//for load button
-		load=new JButton("LOAD");
-		load.setSize(300,125);
-		load.setLocation((menu.getWidth()/2)+30,menu.getHeight()-230);
-		load.setBackground(Color.GRAY);
-		/*load.addActionListener( new ActionListener() //button doesn't go away if this function is added when pressing start
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
 
-			}
-		});*/
-		load.setVisible(true);
 		
 		//at the end, add everything to frame and set visible	
 		menu.add(picture);
 		menu.add(start);
-		menu.add(load);
-		
+
 		menu.setVisible(true);
 		
 		menu.revalidate();

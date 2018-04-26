@@ -27,7 +27,7 @@ public class Player
 	private int lifes;
 	public int initializer;
 	private boolean running;
-	public JButton continu,save,random,spots;
+	public JButton continu,random,spots;
 	private boolean missed,hit;
 	JPanel temp;
 
@@ -50,10 +50,6 @@ public class Player
 		continu.setSize(300,100);
 		continu.setLocation(615,615-270);
 
-
-		save = new JButton("Save");
-		save.setSize(285,100);
-		save.setLocation(615,615-150);
 
 		random=new JButton("Random");
 		random.setSize(285,100);
@@ -101,7 +97,6 @@ public class Player
 			}
 		});
 
-		save.setVisible(true);
 
 		temp.setSize(window.getContentPane().getHeight(),window.getContentPane().getHeight());
 		buttons = new BoardButton[10][10];
@@ -201,6 +196,8 @@ public class Player
 
 		JLabel hit=new JLabel(new ImageIcon("ResultHit.png"));
 		JLabel nothit=new JLabel(new ImageIcon("ResultMiss.png"));;
+		
+		JButton counter = new JButton();
 
 		BoardButton play[][];
 		play = new BoardButton[10][10];
@@ -222,10 +219,9 @@ public class Player
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				window.remove(save);
 				window.remove(fire);
 				window.remove(temp);
-
+				window.remove(counter);
 				window.remove(hit);
 				window.remove(nothit);
 				//menu.setVisible(false);
@@ -250,9 +246,15 @@ public class Player
 		window.revalidate();
 		window.repaint();
 
+		
+		counter.setSize(300,100);
+		counter.setLocation(615,window.getContentPane().getHeight()-120);
 		while(true)	//add if life ==0 to end the game as well.
 		{
-			System.out.printf("Enemy Life points: %s\n", enemy.get_life());
+			counter.setText("Enemy Life points: " + enemy.get_life());
+			window.add(counter);
+			window.revalidate();
+			window.repaint();
 			if(enemy.get_miss()||enemy.get_life()==0)	//break and make all buttons unclickable
 				break;
 			if(enemy.get_hit())
@@ -276,12 +278,8 @@ public class Player
 		}
 
 		window.add(fire);
-		window.add(save);
 		window.revalidate();
 		window.repaint();
-
-		//enemy.miss_init();
-		//enemy.hit_init();
 
 	}
 

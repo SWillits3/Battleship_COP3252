@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-
 public class Battleship
 {
 	public static void main(String[] args)
