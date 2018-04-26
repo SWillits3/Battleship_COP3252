@@ -31,7 +31,7 @@ public class Menu
 		//for start button
 		start=new JButton("START");
 		start.setSize(300,125);
-		start.setLocation((menu.getWidth()/2)-330,menu.getHeight()-230);
+		start.setLocation((menu.getWidth()/2)-150,menu.getHeight()-230);
 		start.setBackground(Color.GRAY);
 		start.addActionListener( new ActionListener()
 		{

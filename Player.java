@@ -47,17 +47,17 @@ public class Player
 
 
 		continu = new JButton("Continue");
-		continu.setSize(300,100);
-		continu.setLocation(615,615-270);
+		continu.setSize(280,100);
+		continu.setLocation(595,615-270);
 
 
 		random=new JButton("Random");
-		random.setSize(285,100);
-		random.setLocation(615,615-150);
+		random.setSize(280,100);
+		random.setLocation(595,615-150);
 
 		spots=new JButton();
-		spots.setSize(300,100);
-		spots.setLocation(615,100);
+		spots.setSize(280,100);
+		spots.setLocation(595,100);
 	}
 
 
@@ -237,8 +237,8 @@ public class Player
 				running = false;
 			}
 		});
-		fire.setSize(300,100);
-		fire.setLocation(615,615-270);
+		fire.setSize(280,100);
+		fire.setLocation(595,615-270);
 		fire.setVisible(true);
 
 		temp.setVisible(true);
@@ -247,8 +247,8 @@ public class Player
 		window.repaint();
 
 		
-		counter.setSize(300,100);
-		counter.setLocation(615,window.getContentPane().getHeight()-120);
+		counter.setSize(280,100);
+		counter.setLocation(595,window.getContentPane().getHeight()-120);
 		while(true)	//add if life ==0 to end the game as well.
 		{
 			counter.setText("Enemy Life points: " + enemy.get_life());
@@ -259,8 +259,8 @@ public class Player
 				break;
 			if(enemy.get_hit())
 			{
-				hit.setSize(300,300);
-				hit.setLocation(615,0);
+				hit.setSize(280,300);
+				hit.setLocation(610,0);
 				window.add(hit);
 				window.revalidate();
 				window.repaint();
@@ -270,7 +270,7 @@ public class Player
 		window.remove(hit);
 		if(enemy.get_life()!=0)
 		{
-			nothit.setSize(300,300);
+			nothit.setSize(280,300);
 			nothit.setLocation(610,0);
 			window.add(nothit);
 			window.revalidate();
@@ -312,8 +312,8 @@ public class Player
 		}
 
 		JButton cont = new JButton("Play");
-		cont.setSize(300,100);
-		cont.setLocation(615,615-270);
+		cont.setSize(280,100);
+		cont.setLocation(595,615-270);
 		cont.addActionListener( new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
